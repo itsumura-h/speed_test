@@ -1,0 +1,8 @@
+FROM nimlang/nim:alpine
+RUN apk update && \
+    apk upgrade --no-cache && \
+    apk add --no-cache gcc libc-dev
+WORKDIR /home/www
+# ADD ./src/nim/speed_test.nimble /home/www/speed_test.nimble
+# RUN chmod 755 speed_test.nimble
+RUN nimble install -y jester

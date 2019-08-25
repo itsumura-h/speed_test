@@ -1,0 +1,14 @@
+FROM pypy:3.6-slim
+WORKDIR /home/www
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y gcc libc-dev
+ADD ./src/python/pyproject.toml /home/www
+ADD ./src/python/pypyrun.sh /home/www
+RUN chmod 755 pypyrun.sh
+RUN pypy3 -m venv .pyvenv && \
+    chmod 755 ./.pyvenv -R && \
+    .pyvenv/bin/activate && \
+    pip install --upgrade pip && \
+    pip install poetry && \
+    poetry install

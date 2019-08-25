@@ -1,0 +1,45 @@
+version: '3'
+services:
+  python:
+    build:
+      context: .
+      dockerfile: python_Dockerfile
+    privileged: true
+    tty: true
+    command: poetry run python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - ./src/python:/home/www
+    ports:
+      - 8000:8000
+  pypy:
+    build:
+      context: .
+      dockerfile: pypy_Dockerfile
+    privileged: true
+    tty: true
+    command: ./pypyrun.sh
+    environment:
+      PYTHONPATH: "/home/www/.venv/bin/python"
+    volumes:
+      - ./src/python:/home/www
+    ports:
+      - 8001:8001
+  nim:
+    build:
+      context: .
+      dockerfile: nim_Dockerfile
+    tty: true
+    command: nim cpp -r src/main.nim
+    volumes:
+      - ./src/nim:/home/www
+    ports:
+      - 8002:8002
+  # go:
+  #   build:
+  #     context: .
+  #     dockerfile: go_Dockerfile
+  #   tty: true
+  #   volumes:
+  #     - ./src/go:/home/www
+  #   ports:
+  #     - 8003:8003

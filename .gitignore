@@ -1,0 +1,9 @@
+# python
+.pyvenv
+.venv
+.vscode
+db.sqlite3
+*.pyc
+
+# nim
+main

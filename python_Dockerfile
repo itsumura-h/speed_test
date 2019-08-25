@@ -1,0 +1,12 @@
+FROM python:alpine
+WORKDIR /home/www
+RUN apk update && \
+    apk upgrade --no-cache && \
+    apk add --no-cache gcc libc-dev
+ADD ./src/python/pyproject.toml /home/www
+RUN python -m venv .venv && \
+    chmod 755 ./.venv -R && \
+    .venv/bin/activate && \
+    pip install --upgrade pip && \
+    pip install poetry && \
+    poetry install
