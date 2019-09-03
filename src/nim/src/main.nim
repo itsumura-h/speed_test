@@ -1,18 +1,19 @@
 import jester, asyncdispatch
 from controllers/SampleController import SampleController
 
-router main_router:
+# router main_router:
+routes:
   get "/": resp SampleController.index()
   get "/fib/@num/":
     resp SampleController.fib(@"num"), "application/json"
 
-# runForever()
+runForever()
 
-proc main() =
-  let port = 8002.Port
-  let settings = newSettings(port=port)
-  var jester = initJester(main_router, settings=settings)
-  jester.serve()
+# proc main() =
+#   let port = 8002.Port
+#   let settings = newSettings(port=port)
+#   var jester = initJester(main_router, settings=settings)
+#   jester.serve()
 
-when isMainModule:
-  main()
+# when isMainModule:
+#   main()

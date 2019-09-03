@@ -7,8 +7,8 @@ include ../ApplicationService
 type SampleService* = ref object of RootObj
 
 proc fib*(this: SampleService, num: int): JsonNode =
-  var results: seq[int]
-  
+  var results = newSeq[int]()
+
   let start_time = getTime()
   for i in 0..<num:
     results.add(ApplicationService().fib(i))

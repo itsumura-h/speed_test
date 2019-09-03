@@ -23,17 +23,17 @@ services:
     volumes:
       - ./src/python:/home/www
     ports:
-      - 8001:8001
+      - 8001:8000
   nim:
     build:
       context: .
       dockerfile: nim_Dockerfile
     tty: true
-    command: nim cpp -r src/main.nim
+    command: nim c -r -d:release --opt:size src/main.nim && src/main
     volumes:
       - ./src/nim:/home/www
     ports:
-      - 8002:8002
+      - 8002:5000
   # go:
   #   build:
   #     context: .
