@@ -41,6 +41,6 @@ sqlparse==0.3.0
 tomlkit==0.5.5
 unify==0.5
 untokenize==0.1.1
-urllib3==1.25.3
+urllib3==1.25.8
 webencodings==0.5.1
 wrapt==1.11.2
